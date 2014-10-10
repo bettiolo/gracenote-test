@@ -4,6 +4,11 @@ var sdConsumerKey = 'YOUR_KEY_HERE';
 var gnClientId = '';
 var gnUserId = '';
 
+if (!sdConsumerKey || !gnClientId || !gnUserId) {
+  console.log("Test not configured!");
+  process.exit(1);
+}
+
 var sdOptions = {
   host: 'api.7digital.com',
   path: '/1.2/status?oauth_consumer_key=' + sdConsumerKey
