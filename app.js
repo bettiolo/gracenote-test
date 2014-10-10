@@ -19,30 +19,21 @@ var gnOptions = {
   path: '/webapi/json/1.0/fieldvalues?client=' + gnClientId + '&fieldname=RADIOMOOD&user=' + gnUserId
 };
 
-request7d();
+request('7digital', sdOptions, function() {
+  request('Gracenote', gnOptions);
+});
 
-function request7d() {
-  console.info('--- Requesting 7digital ------------------------------');
-  console.info('URL: https://' + sdOptions.host + sdOptions.path);
-  console.info(sdOptions);
-  var req = https.request(sdOptions, function(res) {
+function request(apiName, options, onEndCallback) {
+  console.info('--- Requesting ' + apiName + ' ------------------------------------------------');
+  console.info('URL: https://' + options.host + options.path);
+  console.info(options);
+  var req = https.request(options, function(res) {
     processResponse(res, function() {
-      console.info('--- 7digital test completed successfully ------------------------------');
+      console.info('--- ' + apiName + ' test completed successfully ------------------------------');
       console.info('');
-      requestGn();
-    });
-  });
-  req.end();
-}
-
-function requestGn() {
-  console.info('--- Requesting Gracenote ------------------------------');
-  console.info('URL: https://' + gnOptions.host + gnOptions.path);
-  console.info(gnOptions);
-  var req = https.request(gnOptions, function(res) {
-    processResponse(res, function() {
-      console.info('--- Gracenote test completed successfully ------------------------------');
-      console.info('');
+      if (onEndCallback) {
+        onEndCallback();
+      }
     });
   });
   req.end();
