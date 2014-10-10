@@ -15,7 +15,7 @@ var sdOptions = {
 };
 
 var gnOptions = {
-  host: 'c4711424.web.cddbp.net',
+  host: 'c' + gnClientId.split('-')[0] + '.web.cddbp.net',
   path: '/webapi/json/1.0/fieldvalues?client=' + gnClientId + '&fieldname=RADIOMOOD&user=' + gnUserId
 };
 
@@ -27,6 +27,7 @@ function request7d() {
   console.info(sdOptions);
   var req = https.request(sdOptions, function(res) {
     processResponse(res, function() {
+      console.info('--- 7digital test completed successfully ------------------------------');
       console.info('');
       requestGn();
     });
@@ -40,7 +41,8 @@ function requestGn() {
   console.info(gnOptions);
   var req = https.request(gnOptions, function(res) {
     processResponse(res, function() {
-      console.info('--- Test completed successfully ------------------------------');
+      console.info('--- Gracenote test completed successfully ------------------------------');
+      console.info('');
     });
   });
   req.end();
