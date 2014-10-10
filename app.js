@@ -11,7 +11,6 @@ var sdOptions = {
 
 var gnOptions = {
   host: 'c15270144.web.cddbp.net',
-  headers: { 'user-agent': 'Mozilla/5.0' },
   path: '/webapi/json/1.0/fieldvalues?client=' + gnClientId + '&fieldname=RADIOMOOD&user=' + gnUserId
 };
 
