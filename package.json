@@ -1,0 +1,18 @@
+{
+  "name": "gracenote-test",
+  "version": "0.0.1",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "request": "^2.45.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bettiolo/gracenote-test.git"
+  },
+  "author": "Marco Bettiolo",
+  "bugs": {
+    "url": "https://github.com/bettiolo/gracenote-test/issues"
+  },
+  "homepage": "https://github.com/bettiolo/gracenote-test"
+}
