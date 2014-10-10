@@ -5,7 +5,7 @@ var gnClientId = '';
 var gnUserId = '';
 
 if (!sdConsumerKey || !gnClientId || !gnUserId) {
-  console.log("Test not configured!");
+  console.error("Test not configured!");
   process.exit(1);
 }
 
@@ -15,19 +15,19 @@ var sdOptions = {
 };
 
 var gnOptions = {
-  host: 'c15270144.web.cddbp.net',
+  host: 'c4711424.web.cddbp.net',
   path: '/webapi/json/1.0/fieldvalues?client=' + gnClientId + '&fieldname=RADIOMOOD&user=' + gnUserId
 };
 
 request7d();
 
 function request7d() {
-  console.log('--- Requesting 7digital ------------------------------');
-  console.log('URL: https://' + sdOptions.host + sdOptions.path);
-  console.log(sdOptions);
+  console.info('--- Requesting 7digital ------------------------------');
+  console.info('URL: https://' + sdOptions.host + sdOptions.path);
+  console.info(sdOptions);
   var req = https.request(sdOptions, function(res) {
     processResponse(res, function() {
-      console.log('');
+      console.info('');
       requestGn();
     });
   });
@@ -35,14 +35,12 @@ function request7d() {
 }
 
 function requestGn() {
-  console.log('--- Requesting Gracenote ------------------------------');
-  console.log('URL: https://' + gnOptions.host + gnOptions.path);
-  console.log(gnOptions);
+  console.info('--- Requesting Gracenote ------------------------------');
+  console.info('URL: https://' + gnOptions.host + gnOptions.path);
+  console.info(gnOptions);
   var req = https.request(gnOptions, function(res) {
     processResponse(res, function() {
-      console.log('');
-      console.log('--- Here we go again ------------------------------');
-      request7d();
+      console.info('--- Test completed successfully ------------------------------');
     });
   });
   req.end();
@@ -54,7 +52,7 @@ function processResponse(response, onEnd) {
     str += chunk;
   });
   response.on('end', function () {
-    console.log(str);
+    console.info(str);
     onEnd();
   });
 }
